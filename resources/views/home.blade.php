@@ -415,26 +415,40 @@ crossorigin=""></script>
 
 				});
 
+{{-- 
+				var marker;
+
+				var markes;
+
+				var map = L.map('mapid');
+
+
+				L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+					maxZoom: 18
+				}).addTo(map);
+
+				L.control.scale().addTo(map); --}}
+
 
 
 
 				view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],result[1].coordinates[2]);
 
 
-	
 
-		var marker = L.marker([result[1].coordinates[1], result[1].coordinates[0]]).addTo(map);
-		marker.bindPopup(result[0].title)
 
-		
+				var marker = L.marker([result[1].coordinates[1], result[1].coordinates[0]]).addTo(map);
+				marker.bindPopup(result[0].title)
 
-		var circle = L.circle([result[1].coordinates[1], result[1].coordinates[0]], {
-			color: 'red',
-			fillColor: '#f03',
-			fillOpacity: 0.5
-			{{-- radius: result[0].sig --}}
-			{{-- radius: 200000 --}}
-		}).addTo(map);
+
+
+				var circle = L.circle([result[1].coordinates[1], result[1].coordinates[0]], {
+					color: 'red',
+					fillColor: '#f03',
+					fillOpacity: 0.5
+					{{-- radius: result[0].sig --}}
+					{{-- radius: 200000 --}}
+				}).addTo(map);
 
 
 		{{-- var circle = L.circle([10.49577, -66.911959,17], {
@@ -445,12 +459,12 @@ crossorigin=""></script>
 		}).addTo(map);
  --}}
 
-			});
+});
 
 
 
 
-		
+
 
 
 
