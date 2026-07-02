@@ -9,7 +9,7 @@
 </h1>
 
 <a href="https://youtu.be/YEAvFu7ccz8">
-    <img class="flag-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWSy795FlYehw7LEY2lQJFSNPiHhqI2UuFIifVotedaJWTJJ8pH191WFWYSFZror7F7yx-EFJH0qDGvNcspCOeh7E3Y6a1PvoraqDlWkchS6d6JYQB4d7-jA4rJ2jXR1SVbUDbTl7_M8Xrxfrf4NJJKmwNN-33BShajZQ1oSJuIEQFgS5BiDk6OwBkkGk/s16000/foroworkers-featured.png" alt="Open Source Forum Laravel" width="100%">
+    <img class="flag-img" src="gisem.png" alt="GisEM" width="100%">
 </a>
 
 ## Introduction
@@ -36,7 +36,7 @@ earthquake monitor web app.
   <a href="#donations"> Donations</a> •
 </p>
 
-![screenshot](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiNDC3xu3rZ4tvcYpn3oIfInzF_WIu-hjhN-0QXtTCMG8RxS2d1s2aTrx7E6pHpyigd07B55fxhiCHSHpviBF-yR86UrowIvdHwS6SckpM_geLwWOW39y1BO4nRAjxzGvCl-1-fxenX3R-QYz2NPUkdytXi7o-TI4zQjsba0pWmivt1PbAs7fMKpc1is6E/s16000/open-source-forum-laravel.png)
+![screenshot](gisem.png)
 
 ## About
 A powerful Open Source Business Forum that can be installed on your server.Open source Laravel Forum
@@ -50,9 +50,7 @@ We thank everyone who contributes to this project.
 
 _These instructions will allow you to get a copy of the project running on your local machine for development and testing purposes._
 
-## Demo  
 
-* [Install Project ](https://www.udemy.com/course/laravel-13-desde-cero-con-html5-bootstrap-sql-javascript/?referralCode=934C989AB0AD8F563BC4)
 
 
 ## Setup
