@@ -371,6 +371,7 @@ crossorigin=""></script>
 				{{-- $(".subforum").hide(); --}}
 
 				$(".myTable").empty();
+				{{-- $("#mapid").empty(); --}}
 
 				{{-- console.log(result[0]); --}}
 
