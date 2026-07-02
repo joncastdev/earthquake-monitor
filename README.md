@@ -4,17 +4,17 @@
     <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj80lJ2YL2GVpJi0J9bSBGXtwbjx-JXLjA63ZLH5lRzxjuwxYHhXzsKpTU8rjLiAQPq07prlMOiW7c8XKh3Klv91Hf_CM9e8wpuHg7EiqZYNW6utWYKogRHdFTtUnsd4_CAKpMauAPWYMY5kzb18RZgrKzEUs4jgd7g4gJ807oqt5mGhaM2aSxw07wYV3w/s320/foroworkers_logo.png" alt="Foroworkers" width="150">
   </a>
   <br>
-  Foroworkers
+  GisEM
   <br>
 </h1>
 
-<a href="https://www.youtube.com/watch?v=r8JGzp6Sw28">
+<a href="https://youtu.be/YEAvFu7ccz8">
     <img class="flag-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiWSy795FlYehw7LEY2lQJFSNPiHhqI2UuFIifVotedaJWTJJ8pH191WFWYSFZror7F7yx-EFJH0qDGvNcspCOeh7E3Y6a1PvoraqDlWkchS6d6JYQB4d7-jA4rJ2jXR1SVbUDbTl7_M8Xrxfrf4NJJKmwNN-33BShajZQ1oSJuIEQFgS5BiDk6OwBkkGk/s16000/foroworkers-featured.png" alt="Open Source Forum Laravel" width="100%">
 </a>
 
 ## Introduction
 
-The Foroworkers forum software is one of the open source projects using PHP and Laravel to manage self-hosted online communities on your server.
+earthquake monitor web app.
 
 <p align="center">
   <img alt="GitHub" src="https://img.shields.io/github/license/foroworkers/foroworkers?style=for-the-badge">
@@ -74,13 +74,13 @@ The following steps are meant to be used on a development server.
 - Option 1: Install with Composer
 
 ```bash
-$ composer create-project sistemaspymesjc/hudemyx
+$ composer create-project sistemaspymesjc/gisem
 ``` 
 
 - Option 2: Clone Project
 
 ```bash
-$ git clone https://github.com/sistemaspymesjc/hudemyx.git
+$ git clone https://github.com/sistemaspymesjc/gisem.git
 ``` 
 
 - Pull Project Dev Branch
@@ -91,7 +91,7 @@ $ git pull dev
 - Navigate to the root of the Laravel project
 
 ```bash
-$ cd hudemyx
+$ cd gisem
 ``` 
 - Setup vendor libraries 
 
@@ -111,44 +111,7 @@ $ cp .env.example .env
 $ php artisan key:generate
 ``` 
 
-```bash
-$ First Step Create New Database in myconfig.php file Example: foroworkers
-  define('CDB_DATABASE_HOST', '');
-  define('CDB_DATABASE_USERNAME', '');
-  define('CDB_DATABASE_PASSWORD', '');
-  define('CDB_DATABASE', '');
-``` 
 
-```bash
-Second step Create New Database Example: foroworkers
-
-APP_LOCALE=en
-PAYPAL_EMAIL=yourpaypalemail
-APP_ENDPOINT=https://sistemaspymesjc.online
-APP_ENDPOINT_LOCAL=
-APP_AUTHOR=jonathancastro
-APP_EMAIL=sistemaspymesjc@gmail.com
-APP_COPYRIGHT=sistemaspymesjc
-APP_DONATE=https://www.paypal.com/paypalme/programadorjonathan
-APP_PHONE=5804241666224
-
-database connection
-
-DB_DATABASE=your_database
-DB_USERNAME=your_username
-DB_PASSWORD=your_password
-
-for sending emails example sandbox mailtrap
-
-MAIL_MAILER=smtp
-MAIL_HOST=sandbox.smtp.mailtrap.io
-MAIL_PORT=2525
-MAIL_USERNAME=yourusername
-MAIL_PASSWORD=yourpass
-MAIL_ENCRYPTION=tls
-MAIL_FROM_ADDRESS="youremail@gmail.com"
-MAIL_FROM_NAME="${APP_NAME}"
-```
 
 ```bash
 $ php spark db:create 
@@ -169,13 +132,6 @@ $ php artisan serve
 ```
 
 
-## Access:
-
-_Admin: admin@gmail.com
-_Pass: Test1234
-
-_User: user@gmail.com
-_Pass: Test1234
 
 ## Technologies 🛠️
 
@@ -184,9 +140,6 @@ _Pass: Test1234
 * [Hosting Tool](https://namecheap.pxf.io/rnOVB5) 
 
 
-## Courses :movie_camera: 
-
-* [Udemy](https://www.udemy.com/user/jonathan-castro-33/)    
 
 ## Author ✒️
 
