@@ -2,8 +2,8 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "sistemaspymesjc/gisem",
     "type": "project",
-    "description": "Open source Laravel Forum.",
-    "keywords": ["forum", "forum-site"],
+    "description": "earthquake monitor web app",
+    "keywords": ["earthquake app", "earthquake tool"],
     "license": "GPL-3.0",
     "authors": [
         {
