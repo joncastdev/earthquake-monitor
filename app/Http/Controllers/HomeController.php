@@ -59,7 +59,13 @@ class HomeController extends Controller
     }
 
     public function getdata()
-    { 
+    {
+
+        $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-07-02&limit=10');
+
+        return response()->json($data->features);
+
+        // return response()->json([$data->features[0]->properties,$data->features[0]->geometry]); 
 
         $starttime = date("Y-m-d");
 
@@ -69,19 +75,19 @@ class HomeController extends Controller
 
         // $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-06-24&endtime=2026-06-28&minmagnitude=7.5');
 
-       $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$starttime.'&minmagnitude='.$magnitude);
-
-       
-
-       return response()->json([$data->features[0]->properties,$data->features[0]->geometry]);
+        $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$starttime.'&minmagnitude='.$magnitude);
 
 
 
+        return response()->json([$data->features[0]->properties,$data->features[0]->geometry]);
 
-   }
 
-   public function getdatapost(Request $request)
-   {
+
+
+    }
+
+    public function getdatapost(Request $request)
+    {
 
     // $request->magnitude
     // $request->starttime 
@@ -92,7 +98,7 @@ class HomeController extends Controller
         // $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-06-24&endtime=2026-06-28&minmagnitude=7.5');
 
        $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$request->starttime.'&minmagnitude='.$request->magnitude);
-       
+
 
        return response()->json([$data->features[0]->properties,$data->features[0]->geometry]);
 
