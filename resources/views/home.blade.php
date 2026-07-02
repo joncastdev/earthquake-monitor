@@ -2,7 +2,7 @@
 @section('meta')
 
 
-<title>Tienda Pokémon | Ecommerce online</title> 
+<title>Aplicación web de monitoreo de terremotos</title> 
 
 <link rel="canonical" href="{{env('APP_URL')}}" />
 
@@ -93,9 +93,36 @@ crossorigin=""></script>
 
 				<div class="card-body">
 
-					<h1 class="display-4">Aplicaciòn de Sismos</h1>
+					<h1 class="display-4">Aplicación web de monitoreo de terremotos</h1>
 
-					<p>Date: <input type="text" id="datepicker"></p>
+					<form method="POST" action="" id="logForm">
+						<div class="form-group  form-inline">
+
+							<div class="col-sm-4" >
+
+								<p>Date: <input type="text" name="starttime" id="datepicker"></p>
+
+							</div>
+
+							<div class="col-sm-4" >
+								<input type="text" class="form-control form-control-user" name="magnitude" id="magnitude"  placeholder="magnitude">
+							</div>
+
+
+							<div class="col-sm-4" >                                       
+
+								<button type="submit" class="btn btn-primary btn-user btn-block">Send</button>
+
+							</div>
+
+						</div>
+
+
+
+
+					</form>
+
+					
 					<hr>
 					<br>
 					<br>
@@ -198,7 +225,7 @@ crossorigin=""></script>
 	})
 	.done(function(result) {
 
-		console.log(result[0]);
+		{{-- console.log(result[0]); --}}
 
 
 		$.each(result[0], function(index, val) {
@@ -317,6 +344,125 @@ crossorigin=""></script>
 
 
 		});
+
+	</script>
+
+	<script type="text/javascript">
+
+
+		$("#logForm").submit(function(event) {
+			event.preventDefault();
+
+			let magnitude = $("#magnitude").val();
+			let starttime = $("#datepicker ").val();
+
+
+
+
+			$.post(BASE_URL + '/api/getdatapost',
+			{       
+				magnitude: magnitude,
+				starttime: starttime   
+			}, function(result) {  
+
+
+				console.log(result[0]);
+
+				{{-- $(".subforum").hide(); --}}
+
+				$(".myTable").empty();
+
+				{{-- console.log(result[0]); --}}
+
+
+				$.each(result[0], function(index, val) {
+
+					$(".myTable").append(
+						`<table>
+  <thead>
+    <tr>
+      <th>${index}</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>${val}</td>      
+    </tr>    
+  </tbody>
+</table>
+					`)
+
+
+				});
+
+				$.each(result[1], function(index, val) {
+
+					$(".myTable1").append(
+						`<table>
+  <thead>
+    <tr>
+      <th>${index}</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>${val}</td>      
+    </tr>    
+  </tbody>
+</table>
+					`)
+
+
+				});
+
+
+
+
+				view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],result[1].coordinates[2]);
+
+
+	
+
+		var marker = L.marker([result[1].coordinates[1], result[1].coordinates[0]]).addTo(map);
+		marker.bindPopup(result[0].title)
+
+		
+
+		var circle = L.circle([result[1].coordinates[1], result[1].coordinates[0]], {
+			color: 'red',
+			fillColor: '#f03',
+			fillOpacity: 0.5
+			{{-- radius: result[0].sig --}}
+			{{-- radius: 200000 --}}
+		}).addTo(map);
+
+
+		{{-- var circle = L.circle([10.49577, -66.911959,17], {
+			color: 'green',
+			fillColor: '#f03',
+			fillOpacity: 0.5,
+			radius: 500
+		}).addTo(map);
+ --}}
+
+			});
+
+
+
+
+		
+
+
+
+
+			
+
+
+
+
+		});
+
+
 
 	</script>
 

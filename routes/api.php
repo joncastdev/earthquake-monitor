@@ -10,6 +10,6 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::get('/getdata', [HomeController::class, 'getdata']);
+// Route::get('/getdata', [HomeController::class, 'getdata']);
 
-// Route::post('/getdata', [HomeController::class, 'getdata']);
+Route::post('/getdatapost', [HomeController::class, 'getdatapost']);
