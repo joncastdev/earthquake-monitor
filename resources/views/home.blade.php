@@ -106,6 +106,8 @@ crossorigin=""></script>
 
 							<div class="col-sm-4" >
 								<input type="text" class="form-control form-control-user" name="magnitude" id="magnitude"  placeholder="magnitude">
+
+								<input type="text" class="form-control form-control-user" name="radius" id="radius"  placeholder="radius">
 							</div>
 
 
@@ -225,12 +227,14 @@ crossorigin=""></script>
 	})
 	.done(function(result) {
 
+		{{-- console.log(result); --}}
+
 		{{-- console.log(result[0]); --}}
 
 
 		$.each(result[0], function(index, val) {
 
-			$(".myTable").append(
+			{{-- $(".myTable").append(
 				`<table>
   <thead>
     <tr>
@@ -243,14 +247,14 @@ crossorigin=""></script>
     </tr>    
   </tbody>
 </table>
-			`)
+			`) --}}
 
 
 		});
 
 		$.each(result[1], function(index, val) {
 
-			$(".myTable1").append(
+			{{-- $(".myTable1").append(
 				`<table>
   <thead>
     <tr>
@@ -267,8 +271,8 @@ crossorigin=""></script>
 
 
 		});
-
-	});
+ --}}
+});
 
 </script>
 
@@ -296,32 +300,52 @@ crossorigin=""></script>
 	})
 	.done(function(result) {
 
+		{{-- console.log(result);  --}}
+
 		{{-- console.log(result.coordinates[0]); --}}
 
-		{{-- for (let i = 0; i < result.length; i++) {   --}}
+		for (let i = 0; i < result.length; i++) {
 
-		view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],result[1].coordinates[2]);
+			{{-- console.log(result[i]); --}}
+
+			{{-- console.log(result[i].geometry);     --}}
+
+			{{-- console.log(result[i].geometry.coordinates);  --}}
+
+			{{-- view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],result[1].coordinates[2]); --}}
+
+			{{-- view = map.setView([result[i].geometry.coordinates[1],result[i].geometry.coordinates[0]],result[i].geometry.coordinates[2]); --}}
+
+			view = map.setView([result[i].geometry.coordinates[1],result[i].geometry.coordinates[0]],2);
 
 
 		//aqui no es necesario
-		{{-- marker =  L.marker(result[1].coordinates[1],result[1].coordinates[0]).addTo(map); --}}
+			{{-- marker =  L.marker(result[1].coordinates[1],result[1].coordinates[0]).addTo(map); --}}
 
-		{{-- marker.bindPopup(result.coordinates[1],result.coordinates[0]).addTo(map).openPopup(); --}}
+			{{-- marker.bindPopup(result.coordinates[1],result.coordinates[0]).addTo(map).openPopup(); --}}
 
-		{{-- marker.bindPopup(result[1].coordinates[1],result[1].coordinates[0]).addTo(map); --}}
+			{{-- marker.bindPopup(result[1].coordinates[1],result[1].coordinates[0]).addTo(map); --}}
 
-		var marker = L.marker([result[1].coordinates[1], result[1].coordinates[0]]).addTo(map);
-		marker.bindPopup(result[0].title)
+			{{-- var marker = L.marker([result[1].coordinates[1], result[1].coordinates[0]]).addTo(map);
+			marker.bindPopup(result[0].title) --}}
+
+			var marker = L.marker([result[i].geometry.coordinates[1], result[i].geometry.coordinates[0]]).addTo(map);
+			marker.bindPopup(result[i].properties.title)
 
 		{{-- var marker = L.marker([10.488, -66.879]).addTo(map);
 		marker.bindPopup("<b>Hola desde Caracas!</b><br>Este es un popup personalizado.") --}}
 
-		var circle = L.circle([result[1].coordinates[1], result[1].coordinates[0]], {
+	{{-- 	var circle = L.circle([result[1].coordinates[1], result[1].coordinates[0]], {
+			color: 'red',
+			fillColor: '#f03',
+			fillOpacity: 0.5			
+		}).addTo(map); --}}
+
+		var circle = L.circle([result[i].geometry.coordinates[1], result[i].geometry.coordinates[0]], {
 			color: 'red',
 			fillColor: '#f03',
 			fillOpacity: 0.5
-			{{-- radius: result[0].sig --}}
-			{{-- radius: 200000 --}}
+			{{-- radius: 2000000			 --}}
 		}).addTo(map);
 
 
@@ -340,46 +364,48 @@ crossorigin=""></script>
 
 			marker.bindPopup(result[i].country).addTo(map);  --}} 
 
-			{{-- } --}}
+		}
 
 
-		});
+	});
 
-	</script>
+</script>
 
-	<script type="text/javascript">
-
-
-		$("#logForm").submit(function(event) {
-			event.preventDefault();
-
-			let magnitude = $("#magnitude").val();
-			let starttime = $("#datepicker ").val();
+<script type="text/javascript">
 
 
+	$("#logForm").submit(function(event) {
+		event.preventDefault();
+
+		let magnitude = $("#magnitude").val();
+		let starttime = $("#datepicker").val();
+		let radius = $("#radius").val();
 
 
-			$.post(BASE_URL + '/api/getdatapost',
-			{       
-				magnitude: magnitude,
-				starttime: starttime   
-			}, function(result) {  
 
 
-				console.log(result[0]);
-
-				{{-- $(".subforum").hide(); --}}
-
-				$(".myTable").empty();
-				{{-- $("#mapid").empty(); --}}
-
-				{{-- console.log(result[0]); --}}
+		$.post(BASE_URL + '/api/getdatapost',
+		{       
+			magnitude: magnitude,
+			starttime: starttime,
+			radius: radius     
+		}, function(result) {  
 
 
-				$.each(result[0], function(index, val) {
+			console.log(result[0]);
 
-					$(".myTable").append(
-						`<table>
+			{{-- $(".subforum").hide(); --}}
+
+			$(".myTable").empty();
+			{{-- $("#mapid").empty(); --}}
+
+			{{-- console.log(result[0]); --}}
+
+
+			$.each(result[0], function(index, val) {
+
+				$(".myTable").append(
+					`<table>
   <thead>
     <tr>
       <th>${index}</th>      
@@ -391,15 +417,15 @@ crossorigin=""></script>
     </tr>    
   </tbody>
 </table>
-					`)
+				`)
 
 
-				});
+			});
 
-				$.each(result[1], function(index, val) {
+			$.each(result[1], function(index, val) {
 
-					$(".myTable1").append(
-						`<table>
+				$(".myTable1").append(
+					`<table>
   <thead>
     <tr>
       <th>${index}</th>      
@@ -411,10 +437,10 @@ crossorigin=""></script>
     </tr>    
   </tbody>
 </table>
-					`)
+				`)
 
 
-				});
+			});
 
 {{-- 
 				var marker;
@@ -433,7 +459,11 @@ crossorigin=""></script>
 
 
 
-				view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],result[1].coordinates[2]);
+				{{-- view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],result[1].coordinates[2]); --}}
+
+					{{-- view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],result[1].coordinates[2]); --}}
+
+						view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],2);
 
 
 
@@ -441,15 +471,25 @@ crossorigin=""></script>
 				var marker = L.marker([result[1].coordinates[1], result[1].coordinates[0]]).addTo(map);
 				marker.bindPopup(result[0].title)
 
+				if(radius){
 
-
-				var circle = L.circle([result[1].coordinates[1], result[1].coordinates[0]], {
+					var circle = L.circle([result[1].coordinates[1], result[1].coordinates[0]], {
 					color: 'red',
 					fillColor: '#f03',
-					fillOpacity: 0.5
-					{{-- radius: result[0].sig --}}
-					{{-- radius: 200000 --}}
+					fillOpacity: 0.5,
+					radius: radius					
 				}).addTo(map);
+
+				}
+
+
+
+				{{-- var circle = L.circle([result[1].coordinates[1], result[1].coordinates[0]], {
+					color: 'red',
+					fillColor: '#f03',
+					fillOpacity: 0.5,		
+					radius: 200000
+				}).addTo(map); --}}
 
 
 		{{-- var circle = L.circle([10.49577, -66.911959,17], {
@@ -470,19 +510,19 @@ crossorigin=""></script>
 
 
 
-			
 
 
 
 
-		});
+
+	});
 
 
 
-	</script>
+</script>
 
-	{{-- @include('inc/footer') --}}
-	@endsection 
+{{-- @include('inc/footer') --}}
+@endsection 
 
 
 
