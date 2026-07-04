@@ -29,6 +29,18 @@ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0v
 crossorigin=""></script>
 
 
+<script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+
+<!-- 	<script src="https://d3js.org/d3.v5.min.js"></script> -->
+<!-- script para que reconoscA EL THEN -->
+<script src= 
+"https://d3js.org/d3-dsv.v1.min.js"> 
+</script> 
+<script src= 
+"https://d3js.org/d3-fetch.v1.min.js"> 
+</script> 
+
+
 
 @endsection 
 
@@ -221,18 +233,18 @@ crossorigin=""></script>
 
 <script>
 
-	$.ajax({
+	{{-- $.ajax({
 		url: BASE_URL+'/api/getdata',   
 		dataType: 'json'    
 	})
-	.done(function(result) {
+	.done(function(result) { --}}
 
 		{{-- console.log(result); --}}
 
 		{{-- console.log(result[0]); --}}
 
 
-		$.each(result[0], function(index, val) {
+		{{-- $.each(result[0], function(index, val) { --}}
 
 			{{-- $(".myTable").append(
 				`<table>
@@ -250,9 +262,9 @@ crossorigin=""></script>
 			`) --}}
 
 
-		});
+		{{-- }); --}}
 
-		$.each(result[1], function(index, val) {
+		{{-- $.each(result[1], function(index, val) { --}}
 
 			{{-- $(".myTable1").append(
 				`<table>
@@ -272,7 +284,7 @@ crossorigin=""></script>
 
 		});
  --}}
-});
+{{-- }); --}}
 
 </script>
 
@@ -364,10 +376,21 @@ crossorigin=""></script>
 
 			marker.bindPopup(result[i].country).addTo(map);  --}} 
 
+
+
+
 		}
+
+		{{-- getChart() --}}
 
 
 	});
+
+
+	
+
+
+
 
 </script>
 
@@ -461,9 +484,9 @@ crossorigin=""></script>
 
 				{{-- view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],result[1].coordinates[2]); --}}
 
-					{{-- view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],result[1].coordinates[2]); --}}
+				{{-- view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],result[1].coordinates[2]); --}}
 
-						view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],2);
+				view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],2);
 
 
 
@@ -474,11 +497,11 @@ crossorigin=""></script>
 				if(radius){
 
 					var circle = L.circle([result[1].coordinates[1], result[1].coordinates[0]], {
-					color: 'red',
-					fillColor: '#f03',
-					fillOpacity: 0.5,
-					radius: radius					
-				}).addTo(map);
+						color: 'red',
+						fillColor: '#f03',
+						fillOpacity: 0.5,
+						radius: radius					
+					}).addTo(map);
 
 				}
 
