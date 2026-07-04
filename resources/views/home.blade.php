@@ -29,16 +29,7 @@ integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0v
 crossorigin=""></script>
 
 
-<script type = "text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
 
-<!-- 	<script src="https://d3js.org/d3.v5.min.js"></script> -->
-<!-- script para que reconoscA EL THEN -->
-<script src= 
-"https://d3js.org/d3-dsv.v1.min.js"> 
-</script> 
-<script src= 
-"https://d3js.org/d3-fetch.v1.min.js"> 
-</script> 
 
 
 
@@ -46,11 +37,11 @@ crossorigin=""></script>
 
 @section('content')
 
-{{-- <script>
+ {{-- <script>
   $( function() {
     $( "#datepicker" ).datepicker();
   } );
-</script> --}}
+</script>  --}}
 
 
 {{-- @if(!Auth::user())   
