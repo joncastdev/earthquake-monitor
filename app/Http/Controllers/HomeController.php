@@ -58,6 +58,23 @@ class HomeController extends Controller
         // return view('home');
     }
 
+    public function test()
+    {          
+
+
+        $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-06-24&endtime=2026-06-28&minmagnitude=7.5');
+
+       
+
+        return view('test', [          
+          'datas' => $data
+         // 'datas' => $data->features[0]->properties
+      // 'categorys2' => $category2     
+      ]);
+
+      
+    }
+
     public function getdata()
     {
 

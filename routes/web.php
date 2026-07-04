@@ -10,6 +10,8 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index']);
 
+Route::get('/test', [HomeController::class, 'test']);
+
 Route::get('/vals', [HomeController::class, 'vals']);
 
 Route::get('/catalogs', [HomeController::class, 'catalogs']);
