@@ -139,10 +139,24 @@ crossorigin=""></script>
 					<br>
 					<br>
 					<br>
+					{{-- <br>
 					<br>
 					<br>
-					<br>
-					<br>
+					<br> --}}
+					<hr>
+
+					<div class="row">				
+
+						<div class="col-sm-4 offset-8">
+
+							<div>Fecha: {{ date('d-m-Y') }}</div>
+							<div id="totaleventsnow"></div>
+
+						</div>
+
+					</div>
+
+					<hr>
 
 					<div class="col-12">  
 						<div id="mapid" style="width: 100%;height: 480px;box-shadow: 5px 5px 5px #888;"></div>
@@ -152,6 +166,8 @@ crossorigin=""></script>
 						<div id="mapid2" style="width: 100%;height: 480px;box-shadow: 5px 5px 5px #888;"></div>
 					</div>
 					<hr>
+
+					
 
 
 
@@ -242,6 +258,33 @@ crossorigin=""></script>
 		$( "#datepicker" ).datepicker();
 	} );
 </script> 
+
+<script>
+	$.ajax({
+		url: BASE_URL+'/api/totaleventsnow',   
+		dataType: 'json'    
+	})
+	.done(function(result) {
+
+		console.log(result[0].count);
+
+		console.log(result[1].mag);
+
+
+
+		$("#totaleventsnow").html('Total Eventos:'+result[0].count);
+
+		{{-- const numbers = [10, 20, 30, 40, 50]; --}}
+		const numbers = result[1].mag;
+
+// 1. Calculate sum, 2. Divide by total elements
+		const average = numbers.reduce((sum, num) => sum + num, 0) / numbers.length;
+
+console.log(average); // Output: 30
+
+});
+
+</script>
 
 <script>
 
@@ -641,6 +684,8 @@ new Morris.Line({
 
 
 </script>
+
+
 
 {{-- @include('inc/footer') --}}
 @endsection 

@@ -150,6 +150,37 @@ public function consultas()
     return view('home');
 }
 
+public function totaleventsnow()
+{ 
+
+  $starttime = date("Y-m-d");      
+
+    // $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-06-24&endtime=2026-06-28&minmagnitude=7.5');
+
+
+    $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/count?format=geojson&starttime='.$starttime);
+
+    $datax = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$starttime);
+
+    // foreach ($datax as $data) {
+       
+    //     return response()->json($data->FeatureCollection);
+    // }
+
+        // return response()->json($data->features[0]->properties->mag);
+
+        // return response()->json($data->features);
+
+        // return response()->json([$data->features[0]->properties,$data->features[0]->geometry]);
+
+         return response()->json([$data,$datax->features[0]->properties]);  
+    
+
+    
+    return response()->json($data);
+
+}
+
     /**
      * Show the form for creating a new resource.
      */
