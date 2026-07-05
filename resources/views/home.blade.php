@@ -28,6 +28,11 @@ crossorigin=""/>
 integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
 crossorigin=""></script>
 
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+{{-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script> --}}
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+
 
 
 
@@ -143,12 +148,16 @@ crossorigin=""></script>
 						<div id="mapid" style="width: 100%;height: 480px;box-shadow: 5px 5px 5px #888;"></div>
 					</div>
 					<hr>
+					<div class="col-12">  
+						<div id="mapid2" style="width: 100%;height: 480px;box-shadow: 5px 5px 5px #888;"></div>
+					</div>
+					<hr>
 
 
 
 					<div class="row">				
 
-						<div class="col-sm-4">
+						<div class="col-sm-6">
 
 							<div class="card">
 
@@ -175,6 +184,17 @@ crossorigin=""></script>
             </thead>                       
 
           </table>   --}}
+
+          <div class="col-sm-6">
+
+          	<!-- Card Body -->
+          	<div class="card-body">
+          		<div class="chart-area">
+          			<div id="myfirstchart" style="height: 250px;"></div>
+          		</div>
+          	</div>
+
+          </div>
 
 
         </div>
@@ -230,12 +250,12 @@ crossorigin=""></script>
 	})
 	.done(function(result) { --}}
 
-		{{-- console.log(result); --}}
+	{{-- console.log(result); --}}
 
-		{{-- console.log(result[0]); --}}
+	{{-- console.log(result[0]); --}}
 
 
-		{{-- $.each(result[0], function(index, val) { --}}
+	{{-- $.each(result[0], function(index, val) { --}}
 
 			{{-- $(".myTable").append(
 				`<table>
@@ -253,9 +273,9 @@ crossorigin=""></script>
 			`) --}}
 
 
-		{{-- }); --}}
+			{{-- }); --}}
 
-		{{-- $.each(result[1], function(index, val) { --}}
+			{{-- $.each(result[1], function(index, val) { --}}
 
 			{{-- $(".myTable1").append(
 				`<table>
@@ -280,6 +300,8 @@ crossorigin=""></script>
 </script>
 
 <script>
+
+	$("#mapid2").hide();
 	
 	var marker;
 
@@ -367,15 +389,25 @@ crossorigin=""></script>
 
 			marker.bindPopup(result[i].country).addTo(map);  --}} 
 
+		{{-- 	Morris.Donut({			
+    element: 'myfirstchart',
+    data: [    
+    {label: result[i].properties.title, value: result[i].properties.mag}
+  
+    ]
+  }); --}}
 
 
 
-		}
-
-		{{-- getChart() --}}
 
 
-	});
+}
+
+{{-- getChart() --}}
+
+
+
+});
 
 
 	
@@ -456,45 +488,50 @@ crossorigin=""></script>
 
 			});
 
-{{-- 
-				var marker;
 
-				var markes;
-
-				var map = L.map('mapid');
+			{{-- $(".myTable").empty(); --}}
+			$("#mapid").hide();
+			$("#mapid2").show();
 
 
-				L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
-					maxZoom: 18
+			var marker;
+
+			var markes;
+
+			var map = L.map('mapid2');
+
+
+			L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+				maxZoom: 18
+			}).addTo(map);
+
+			L.control.scale().addTo(map);
+
+
+
+
+			{{-- view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],result[1].coordinates[2]); --}}
+
+			{{-- view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],result[1].coordinates[2]); --}}
+
+			view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],2);
+
+
+
+
+			var marker = L.marker([result[1].coordinates[1], result[1].coordinates[0]]).addTo(map);
+			marker.bindPopup(result[0].title)
+
+			if(radius){
+
+				var circle = L.circle([result[1].coordinates[1], result[1].coordinates[0]], {
+					color: 'red',
+					fillColor: '#f03',
+					fillOpacity: 0.5,
+					radius: radius					
 				}).addTo(map);
 
-				L.control.scale().addTo(map); --}}
-
-
-
-
-				{{-- view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],result[1].coordinates[2]); --}}
-
-				{{-- view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],result[1].coordinates[2]); --}}
-
-				view = map.setView([result[1].coordinates[1],result[1].coordinates[0]],2);
-
-
-
-
-				var marker = L.marker([result[1].coordinates[1], result[1].coordinates[0]]).addTo(map);
-				marker.bindPopup(result[0].title)
-
-				if(radius){
-
-					var circle = L.circle([result[1].coordinates[1], result[1].coordinates[0]], {
-						color: 'red',
-						fillColor: '#f03',
-						fillOpacity: 0.5,
-						radius: radius					
-					}).addTo(map);
-
-				}
+			}
 
 
 
@@ -513,6 +550,20 @@ crossorigin=""></script>
 			radius: 500
 		}).addTo(map);
  --}}
+
+ Morris.Donut({			
+ 	element: 'myfirstchart',
+ 	data: [    
+ 		{{-- {label: result[0].title, value: result[0].mag}, --}}
+ 		{label: "Magnitud", value: result[0].mag},
+ 		{label: "Sig", value: result[0].sig},
+ 		{label: "Nst", value: result[0].nst},
+ 		{label: "Dmin", value: result[0].dmin},
+ 		{label: "Rms", value: result[0].rms},
+ 		{label: "Gap", value: result[0].gap}
+
+ 	]
+ });
 
 });
 

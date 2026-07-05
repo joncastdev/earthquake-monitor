@@ -114,7 +114,9 @@ class HomeController extends Controller
 
         // $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-06-24&endtime=2026-06-28&minmagnitude=7.5');
 
-       $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$request->starttime.'&minmagnitude='.$request->magnitude);
+       // $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$request->starttime.'&minmagnitude='.$request->magnitude);
+
+         $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$request->starttime.'&minmagnitude='.$request->magnitude.'&offset=1');
 
 
        return response()->json([$data->features[0]->properties,$data->features[0]->geometry]);
