@@ -13,3 +13,5 @@ Route::get('/user', function (Request $request) {
 Route::get('/getdata', [HomeController::class, 'getdata']);
 
 Route::post('/getdatapost', [HomeController::class, 'getdatapost']);
+
+Route::get('/totaleventsnow', [HomeController::class, 'totaleventsnow']);
