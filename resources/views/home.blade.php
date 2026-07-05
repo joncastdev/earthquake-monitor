@@ -190,7 +190,8 @@ crossorigin=""></script>
           	<!-- Card Body -->
           	<div class="card-body">
           		<div class="chart-area">
-          			<div id="myfirstchart" style="height: 250px;"></div>
+          			{{-- <div id="myfirstchart" style="height: 250px;"></div> --}}
+          			<div id="myfirstchart" style="width: 100%;height: 480px"></div>
           		</div>
           	</div>
 
@@ -401,9 +402,64 @@ crossorigin=""></script>
 
 
 
+
+
 }
 
 {{-- getChart() --}}
+
+{{-- for (let i = 0; i < result.length; i++) { --}}
+
+
+{{-- Morris.Donut({			
+	element: 'myfirstchart',
+	data: [
+
+		{
+			for (let i = 0; i < result.length; i++) {
+			label: result[i].properties.title, value: result[i].properties.mag
+			}
+
+		}
+
+	]
+}); --}}
+
+// 1. Prepare your raw data arrays
+{{-- const dates = ['2026-07-01', '2026-07-02', '2026-07-03']; --}}
+
+{{-- const fechaActual = new Date(); --}}
+
+const dates = result;
+
+
+{{-- const salesData = [150, 230, 180]; --}}
+
+const salesData = result;
+
+const morrisData = [];
+
+// 2. Use a for loop to format data for Morris.js
+for (let i = 0; i < dates.length; i++) {
+	morrisData.push({
+		{{-- date: dates[i], --}}
+		date: dates[i].properties.time,
+		{{-- sales: salesData[i] --}}
+		sales: salesData[i].properties.mag
+	});
+}
+
+// 3. Initialize the Morris Chart
+new Morris.Line({
+  element: 'myfirstchart', // The ID of your HTML container
+  data: morrisData,
+  xkey: 'date',
+  ykeys: ['sales'],
+  labels: ['Magnitud'],
+  resize: true
+});
+
+
 
 
 
