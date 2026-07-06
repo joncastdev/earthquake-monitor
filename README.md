@@ -109,20 +109,10 @@ $ cp .env.example .env
 $ php artisan key:generate
 ``` 
 
+```bash
+$ php artisan migrate
+```
 
-
-```bash
-$ php spark db:create 
-```
-```bash
-$ php spark migrate -all
-```
-```bash
-$ php spark db:seed LoadSeeder
-```
-```bash
-$ php artisan config:clear
-``` 
 - Run server
 
 ```bash
