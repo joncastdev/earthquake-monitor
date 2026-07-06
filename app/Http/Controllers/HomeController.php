@@ -64,7 +64,7 @@ class HomeController extends Controller
 
         $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-06-24&endtime=2026-06-28&minmagnitude=7.5');
 
-       
+
 
         return view('test', [          
           'datas' => $data
@@ -72,39 +72,45 @@ class HomeController extends Controller
       // 'categorys2' => $category2     
       ]);
 
-      
+
     }
 
     public function getdata()
     {
 
-        $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-07-02&limit=10');
+       $starttime = date("Y-m-d");
 
-        return response()->json($data->features);
+       $totalnow = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/count?format=geojson&starttime='.$starttime);
+
+        $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-07-02&limit='.$totalnow->count);
+
+       // $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-07-02&limit=10');
+
+       return response()->json($data->features);
 
         // return response()->json([$data->features[0]->properties,$data->features[0]->geometry]); 
 
-        $starttime = date("Y-m-d");
+       // $starttime = date("Y-m-d");
 
-        $magnitude = rand(5, 7);
+       $magnitude = rand(5, 7);
 
 
 
         // $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-06-24&endtime=2026-06-28&minmagnitude=7.5');
 
-        $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$starttime.'&minmagnitude='.$magnitude);
+       $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$starttime.'&minmagnitude='.$magnitude);
 
 
 
-        return response()->json([$data->features[0]->properties,$data->features[0]->geometry]);
+       return response()->json([$data->features[0]->properties,$data->features[0]->geometry]);
 
 
 
 
-    }
+   }
 
-    public function getdatapost(Request $request)
-    {
+   public function getdatapost(Request $request)
+   {
 
     // $request->magnitude
     // $request->starttime 
@@ -116,7 +122,7 @@ class HomeController extends Controller
 
        // $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$request->starttime.'&minmagnitude='.$request->magnitude);
 
-         $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$request->starttime.'&minmagnitude='.$request->magnitude.'&offset=1');
+       $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$request->starttime.'&minmagnitude='.$request->magnitude.'&offset=1');
 
 
        return response()->json([$data->features[0]->properties,$data->features[0]->geometry]);
@@ -158,12 +164,12 @@ public function totaleventsnow()
     // $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-06-24&endtime=2026-06-28&minmagnitude=7.5');
 
 
-    $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/count?format=geojson&starttime='.$starttime);
+  $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/count?format=geojson&starttime='.$starttime);
 
-    $datax = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$starttime);
+  $datax = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$starttime);
 
     // foreach ($datax as $data) {
-       
+
     //     return response()->json($data->FeatureCollection);
     // }
 
@@ -173,11 +179,11 @@ public function totaleventsnow()
 
         // return response()->json([$data->features[0]->properties,$data->features[0]->geometry]);
 
-         return response()->json([$data,$datax->features[0]->properties]);  
-    
+  return response()->json([$data,$datax->features[0]->properties]);  
 
-    
-    return response()->json($data);
+
+
+  return response()->json($data);
 
 }
 

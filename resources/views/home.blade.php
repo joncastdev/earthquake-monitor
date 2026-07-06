@@ -78,7 +78,7 @@ crossorigin=""></script>
 
 	</style>
 	
-	{{-- @include('inc/navbar') --}}
+	@include('inc/navbar')
 	
 
 
@@ -201,7 +201,18 @@ crossorigin=""></script>
 
           </table>   --}}
 
-          <div class="col-sm-6">
+         
+
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+     <div class="col-sm-6">
 
           	<!-- Card Body -->
           	<div class="card-body">
@@ -212,15 +223,6 @@ crossorigin=""></script>
           	</div>
 
           </div>
-
-
-        </div>
-
-
-
-      </div>
-
-    </div>
 
 
 
@@ -687,7 +689,7 @@ new Morris.Line({
 
 
 
-{{-- @include('inc/footer') --}}
+@include('inc/footer')
 @endsection 
 
 
