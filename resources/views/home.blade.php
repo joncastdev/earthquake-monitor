@@ -175,9 +175,13 @@ crossorigin=""></script>
 
 						<div class="col-sm-6">
 
-							<div class="card">
+							<div id="info">
 
-								<div class="card-header">
+							</div>
+
+							<div class="card" >
+
+								<div class="card-header" id="covert">
 
 									<div class="myTable">	
 
@@ -201,7 +205,7 @@ crossorigin=""></script>
 
           </table>   --}}
 
-         
+
 
 
         </div>
@@ -212,17 +216,19 @@ crossorigin=""></script>
 
     </div>
 
-     <div class="col-sm-6">
+    <div class="col-sm-6">
 
-          	<!-- Card Body -->
-          	<div class="card-body">
-          		<div class="chart-area">
-          			{{-- <div id="myfirstchart" style="height: 250px;"></div> --}}
-          			<div id="myfirstchart" style="width: 100%;height: 480px"></div>
-          		</div>
-          	</div>
+    	<!-- Card Body -->
+    	<div class="card-body">
+    		<div class="chart-area">
+    			{{-- <div id="myfirstchart" style="height: 250px;"></div> --}}
+    			<div id="myfirstchart" style="width: 100%;height: 480px"></div>
+    			{{-- <div id="myfirstchart1" style="width: 100%;height: 480px"></div> --}}
+    		</div>
+    		
+    	</div>
 
-          </div>
+    </div>
 
 
 
@@ -348,6 +354,7 @@ console.log(average); // Output: 30
 <script>
 
 	$("#mapid2").hide();
+	{{-- $("#covert").hide(); --}}
 	
 	var marker;
 
@@ -593,6 +600,8 @@ new Morris.Line({
 			{{-- $(".myTable").empty(); --}}
 			$("#mapid").hide();
 			$("#mapid2").show();
+			{{-- $("#covert").show(); --}}
+			{{-- $("#myfirstchart").hide(); --}}
 
 
 			var marker;
@@ -651,6 +660,37 @@ new Morris.Line({
 			radius: 500
 		}).addTo(map);
  --}}
+
+ let alertcolorgreen='bg-success';
+ let alertcoloryellow='bg-primary';
+ let alertcolororange='bg-warning';
+ let alertcolororred='bg-danger';
+
+ if(result[0].alert='green'){
+
+ 	$("#info").html('<p class="'+ alertcolorgreen + '">'+result[0].place)+'<p/>';
+
+ }
+
+ if(result[0].alert='yellow'){
+
+ 	$("#info").html('<p class="'+ alertcoloryellow + '">'+result[0].place)+'<p/>';
+
+ }
+
+ if(result[0].alert='orange'){
+
+ 	$("#info").html('<p class="'+ alertcolororange + '">'+result[0].place)+'<p/>';
+
+ }
+
+ if(result[0].alert='red'){
+
+ 	$("#info").html('<p class="'+ alertcolorred + '">'+result[0].place)+'<p/>';
+
+ }				
+
+ 
 
  Morris.Donut({			
  	element: 'myfirstchart',
