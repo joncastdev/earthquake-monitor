@@ -36,7 +36,7 @@ earthquake monitor web app.
   <a href="#donations"> Donations</a> •
 </p>
 
-![screenshot](gisem.png)
+![screenshot](gisem2.png)
 
 ## About
 A powerful Open Source Business Forum that can be installed on your server.Open source Laravel Forum
