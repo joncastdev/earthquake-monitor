@@ -167,6 +167,28 @@ crossorigin=""></script>
 					</div>
 					<hr>
 
+					<div class="row">		
+
+						<div class="col-12">
+
+							<div id="info">
+
+							</div>
+
+							<!-- Card Body -->
+							<div class="card-body">
+								<div class="chart-area">    		
+									<div id="myfirstchart" style="width: 100%;height: 480px"></div>    		
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<hr>
+
 					
 
 
@@ -175,9 +197,9 @@ crossorigin=""></script>
 
 						<div class="col-sm-6">
 
-							<div id="info">
+							{{-- <div id="info">
 
-							</div>
+							</div> --}}
 
 							<div class="card" >
 
@@ -222,7 +244,7 @@ crossorigin=""></script>
     	<div class="card-body">
     		<div class="chart-area">
     			{{-- <div id="myfirstchart" style="height: 250px;"></div> --}}
-    			<div id="myfirstchart" style="width: 100%;height: 480px"></div>
+    			<div id="myfirstchart2" style="width: 100%;height: 480px"></div>
     			{{-- <div id="myfirstchart1" style="width: 100%;height: 480px"></div> --}}
     		</div>
     		
@@ -661,12 +683,13 @@ new Morris.Line({
 		}).addTo(map);
  --}}
 
+ let alertcolornull='bg-dark';
  let alertcolorgreen='bg-success';
  let alertcoloryellow='bg-primary';
  let alertcolororange='bg-warning';
  let alertcolororred='bg-danger';
 
- if(result[0].alert='green'){
+{{--  if(result[0].alert='green'){
 
  	$("#info").html('<p class="'+ alertcolorgreen + '">'+result[0].place)+'<p/>';
 
@@ -688,12 +711,29 @@ new Morris.Line({
 
  	$("#info").html('<p class="'+ alertcolorred + '">'+result[0].place)+'<p/>';
 
- }				
+ }	 --}}
+
+ switch (result[0].alert) {
+ case 'green':
+ 	$("#info").html('<p class="'+ alertcolorgreen + '">'+result[0].place)+'<p/>';
+ 	break;
+ case 'yellow':
+ 	$("#info").html('<p class="'+ alertcoloryellow + '">'+result[0].place)+'<p/>';
+ 	break;
+ case 'orange':
+ 	$("#info").html('<p class="'+ alertcolororange + '">'+result[0].place)+'<p/>';
+ 	break;
+ case 'red':
+  	$("#info").html('<p class="'+ alertcolorred + '">'+result[0].place)+'<p/>';
+ 	break;
+ default:
+   	$("#info").html('<p class="'+ alertcolornull + '">'+result[0].place)+'<p/>';
+ }			
 
  
 
  Morris.Donut({			
- 	element: 'myfirstchart',
+ 	element: 'myfirstchart2',
  	data: [    
  		{{-- {label: result[0].title, value: result[0].mag}, --}}
  		{label: "Magnitud", value: result[0].mag},
