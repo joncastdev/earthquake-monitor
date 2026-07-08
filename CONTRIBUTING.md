@@ -46,8 +46,7 @@ $ cd gisem
 $ composer install
 ```
 
-- Setup .env file, myconfig.php and create database
-- Avoid changing the author data as this may cause problems when running the project.
+- Setup .env file and create database
 
 - Copy .env.example config and generate Key project 
 
@@ -57,6 +56,10 @@ $ cp .env.example .env
 ```bash
 $ php artisan key:generate
 ``` 
+
+Second step Create New Database Example: gisem
+
+APP_ENDPOINT_FACTORY=https://earthquake-usgs-gov.translate.goog
 
 ```bash
 $ php artisan migrate
