@@ -14,7 +14,7 @@
 
 ## Introduction
 
-earthquake monitor web app.
+earthquake monitor web app - Hazards API - Data analysis and preventive measures in the face of seismic activity.
 
 <p align="center">
   <img alt="GitHub" src="https://img.shields.io/github/license/foroworkers/foroworkers?style=for-the-badge">
@@ -97,7 +97,7 @@ $ cd gisem
 $ composer install
 ```
 
-- Setup .env file, myconfig.php and create database
+- Setup .env file and create database
 - Avoid changing the author data as this may cause problems when running the project.
 
 - Copy .env.example config and generate Key project 
@@ -108,6 +108,18 @@ $ cp .env.example .env
 ```bash
 $ php artisan key:generate
 ``` 
+```bash
+
+Second step Create New Database Example: gisem
+
+APP_ENDPOINT_FACTORY=https://earthquake-usgs-gov.translate.goog
+
+database connection
+
+DB_DATABASE=your_database
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
 
 ```bash
 $ php artisan migrate
