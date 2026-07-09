@@ -171,7 +171,7 @@ crossorigin=""></script>
 
 						<div class="col-12">
 
-							<div id="info">
+							<div id="info" class="text-white">
 
 							</div>
 
@@ -724,7 +724,7 @@ new Morris.Line({
  	$("#info").html('<p class="'+ alertcolororange + '">'+result[0].place)+'<p/>';
  	break;
  case 'red':
-  	$("#info").html('<p class="'+ alertcolorred + '">'+result[0].place)+'<p/>';
+  	$("#info").html('<p class="'+ alertcolororred + '">'+result[0].place)+'<p/>';
  	break;
  default:
    	$("#info").html('<p class="'+ alertcolornull + '">'+result[0].place)+'<p/>';
