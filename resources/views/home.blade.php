@@ -112,7 +112,19 @@ crossorigin=""></script>
 
 							</div>
 
+							{{-- <div class="col-sm-4" >
+								<select class="form-control" name="country" id="country">
+									<option id="option" value="">Select Country</option>       
+								</select>
+							</div> --}}
+
 							<div class="col-sm-4" >
+
+								<select class="form-control" name="country" id="country">
+									{{-- <option id="option" value="">Select Country</option> --}}
+									<option value="">Select Country</option>            
+								</select>
+								<br>
 								<input type="text" class="form-control form-control-user" name="magnitude" id="magnitude"  placeholder="magnitude">
 
 								<input type="text" class="form-control form-control-user" name="radius" id="radius"  placeholder="radius">
@@ -549,10 +561,28 @@ new Morris.Line({
 
 <script type="text/javascript">
 
+	$.ajax({
+		url: BASE_URL+'/api/countrys',   
+		dataType: 'json'    
+	})
+	.done(function(result) {
+
+
+
+		$.each(result, function(index, val) {
+
+
+			$("#country").append('<option value="'+ val.country_name + '">' + val.country_name + '</option>')
+
+		});
+	});
+
+
 
 	$("#logForm").submit(function(event) {
 		event.preventDefault();
 
+		let country = $("#country").val();
 		let magnitude = $("#magnitude").val();
 		let starttime = $("#datepicker").val();
 		let radius = $("#radius").val();
@@ -561,14 +591,16 @@ new Morris.Line({
 
 
 		$.post(BASE_URL + '/api/getdatapost',
-		{       
+		{ 
+			country: country,      
 			magnitude: magnitude,
 			starttime: starttime,
 			radius: radius     
 		}, function(result) {  
 
 
-			console.log(result[0]);
+			console.log(result);
+			{{-- console.log(result[0]); --}}
 
 			{{-- $(".subforum").hide(); --}}
 
@@ -724,10 +756,10 @@ new Morris.Line({
  	$("#info").html('<p class="'+ alertcolororange + '">'+result[0].place)+'<p/>';
  	break;
  case 'red':
-  	$("#info").html('<p class="'+ alertcolororred + '">'+result[0].place)+'<p/>';
+ 	$("#info").html('<p class="'+ alertcolororred + '">'+result[0].place)+'<p/>';
  	break;
  default:
-   	$("#info").html('<p class="'+ alertcolornull + '">'+result[0].place)+'<p/>';
+ 	$("#info").html('<p class="'+ alertcolornull + '">'+result[0].place)+'<p/>';
  }			
 
  
