@@ -122,7 +122,8 @@ crossorigin=""></script>
 
 								<select class="form-control" name="country" id="country">
 									{{-- <option id="option" value="">Select Country</option> --}}
-									<option value="">Select Country</option>            
+									{{-- <option value="">Select Country</option> --}}
+									<option value="none">Select Country</option>               
 								</select>
 								<br>
 								<input type="text" class="form-control form-control-user" name="magnitude" id="magnitude"  placeholder="magnitude">

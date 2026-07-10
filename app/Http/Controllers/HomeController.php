@@ -142,11 +142,15 @@ class HomeController extends Controller
     // ->where('country_name', $request->country)
     // ->first();
 
+    // return response()->json($request->country);
+
     $mdata = similar_text($data->features[0]->properties->place, $request->country, $percent);
 
     // if ($data->features[0]->place ) {
     //     // code...
     // }
+
+    // return response()->json($mdata);
 
     // return response()->json($mdata);
 
@@ -161,7 +165,7 @@ class HomeController extends Controller
        return response()->json([$data->features[0]->properties,$data->features[0]->geometry]); 
     }else{
 
-         // return response()->json([$data->features[0]->properties,$data->features[0]->geometry]);
+         return response()->json([$data->features[0]->properties,$data->features[0]->geometry]);
 
          }
 
