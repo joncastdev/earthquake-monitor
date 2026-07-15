@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Services\ModuleService;
 
+use App\Models\Country;
+
 class HomeController extends Controller
 {
 
@@ -58,6 +60,18 @@ class HomeController extends Controller
         // return view('home');
     }
 
+    public function countrys()
+    {
+
+
+        $data = Country::select('id', 'country_name')           
+        ->get();    
+
+
+        return response()->json($data);
+
+    }
+
     public function test()
     {          
 
@@ -82,7 +96,7 @@ class HomeController extends Controller
 
        $totalnow = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/count?format=geojson&starttime='.$starttime);
 
-        $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-07-02&limit='.$totalnow->count);
+       $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-07-02&limit='.$totalnow->count);
 
        // $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime=2026-07-02&limit=10');
 
@@ -122,16 +136,51 @@ class HomeController extends Controller
 
        // $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$request->starttime.'&minmagnitude='.$request->magnitude);
 
-       $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$request->starttime.'&minmagnitude='.$request->magnitude.'&offset=1');
+    $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$request->starttime.'&minmagnitude='.$request->magnitude.'&offset=1');
+
+    // $dbCountry = country::select('country_name')
+    // ->where('country_name', $request->country)
+    // ->first();
+
+    // return response()->json($request->country);
+
+    $mdata = similar_text($data->features[0]->properties->place, $request->country, $percent);
+
+    // if ($data->features[0]->place ) {
+    //     // code...
+    // }
+
+    // return response()->json($mdata);
+
+    // return response()->json($mdata);
+
+     // return response()->json($data->features[0]->properties->place);
+
+    // if ($percent >= 10) {
+         if ($mdata >= 5) {
+        // echo "Las palabras son muy similares. Coinciden en un: " . round($porcentaje) . "%";
+
+        // return response()->json(round($percent));
+
+       return response()->json([$data->features[0]->properties,$data->features[0]->geometry]); 
+    }else{
+
+         return response()->json([$data->features[0]->properties,$data->features[0]->geometry]);
+
+         }
 
 
-       return response()->json([$data->features[0]->properties,$data->features[0]->geometry]);
+
+       // $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/query?format=geojson&starttime='.$request->starttime.'&minmagnitude='.$request->magnitude.'&offset=1');
 
 
-   }
+    // return response()->json([$data->features[0]->properties,$data->features[0]->geometry]);
 
-   public function catalogs()
-   {       
+
+}
+
+public function catalogs()
+{       
 
     $data = $this->moduleService->responseGetByPlayerName('/fdsnws/event/1/catalogs');
 
