@@ -1,6 +1,6 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "sistemaspymesjc/gisem",
+    "name": "joncastdev/earthquake-monitor",
     "type": "project",
     "description": "earthquake monitor web app",
     "keywords": ["earthquake app", "earthquake tool"],
@@ -8,7 +8,7 @@
     "authors": [
         {
             "name": "Jonathan Castro",
-            "email": "sistemaspymesjc@gmail.com"
+            "email": "joncastdev@gmail.com"
         }
     ],
     "support": {
