@@ -34,7 +34,7 @@ The following steps are meant to be used on a development server.
 - Composer
 
 ```bash
-$ composer create-project forumworkers/forum-laravel
+$ composer create-project joncastdev/earthquake-monitor
 ``` 
 
 -  Clone Project
